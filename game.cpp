@@ -65,13 +65,6 @@ public:
     void displayMap()
     {
         system("cls");
-
-        if (!message.empty())
-        {
-            std::cout << message << "\n";
-            message = "";
-        }
-
         std::cout << "玩家位置: (" << playerX << "," << playerY << ")\n";
         std::cout << "星星位置: (" << starsX << "," << starsY << ")\n\n";
         std::cout << "得分: " << score << "\n";
@@ -83,6 +76,12 @@ public:
                 std::cout << v << ' ';
             }
             std::cout << '\n';
+        }
+
+        if (!message.empty())
+        {
+            std::cout << message << "\n";
+            message = "";
         }
     }
 
@@ -96,31 +95,17 @@ public:
         int oldY = playerY;
 
         if (input == 'w')
-        {
             playerY--;
-        }
         else if (input == 's')
-        {
             playerY++;
-        }
         else if (input == 'a')
-        {
             playerX--;
-        }
         else if (input == 'd')
-        {
             playerX++;
-        }
         else if (input == 'q')
-        {
             gameOver = true;
-            return;
-        }
         else
-        {
             message = "僅限輸入 w, s, a, d, q";
-            return;
-        }
 
         if (playerX < 0 || playerX >= mapSize || playerY < 0 || playerY >= mapSize)
         {
