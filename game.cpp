@@ -38,7 +38,7 @@ public:
 
         randomStars();
 
-        message = "開始遊戲 \n請輸入 w, s, a, d 移動玩家 輸入 q 結束遊戲";
+        message = "遊戲已開始 \n請輸入 w, s, a, d 移動玩家 輸入 q 結束遊戲";
 
         while (true)
         {
@@ -85,11 +85,24 @@ public:
         }
     }
 
+    bool isValidInput(char input)
+    {
+        return input == 'w' || input == 's' ||
+               input == 'a' || input == 'd' ||
+               input == 'q';
+    }
+
     void handleInput()
     {
         char input;
         std::cin >> input;
         input = tolower(input);
+
+        if (!isValidInput(input))
+        {
+            message = "僅限輸入 w, s, a, d, q";
+            return;
+        }
 
         int oldX = playerX;
         int oldY = playerY;
@@ -104,8 +117,6 @@ public:
             playerX++;
         else if (input == 'q')
             gameOver = true;
-        else
-            message = "僅限輸入 w, s, a, d, q";
 
         if (playerX < 0 || playerX >= mapSize || playerY < 0 || playerY >= mapSize)
         {
