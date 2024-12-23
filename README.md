@@ -1,4 +1,4 @@
-# 原生C++終端機移動遊戲 - Native C++ terminal mobile game
+# 原生C++終端機小遊戲 - Native C++ terminal mini game
 
 一個簡單的終端機遊戲，讓玩家在自定義大小的地圖上移動角色。
 
