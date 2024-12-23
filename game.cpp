@@ -40,14 +40,16 @@ public:
 
         message = "遊戲已開始 \n請輸入 w, s, a, d 移動玩家 輸入 q 結束遊戲";
 
-        while (true)
+        while (!gameOver)
         {
-            if (gameOver)
-                break;
             displayMap();
             handleInput();
         }
-        std::cout << "遊戲結束! \n總得分: " << score << "\n";
+    }
+
+    ~Game()
+    {
+        std::cout << "遊戲已結束! \n總得分: " << score << "\n";
         system("pause");
     }
 
@@ -85,38 +87,36 @@ public:
         }
     }
 
-    bool isValidInput(char input)
-    {
-        return input == 'w' || input == 's' ||
-               input == 'a' || input == 'd' ||
-               input == 'q';
-    }
-
     void handleInput()
     {
         char input;
         std::cin >> input;
         input = tolower(input);
 
-        if (!isValidInput(input))
-        {
-            message = "僅限輸入 w, s, a, d, q";
-            return;
-        }
-
         int oldX = playerX;
         int oldY = playerY;
 
-        if (input == 'w')
+        switch (input)
+        {
+        case 'w':
             playerY--;
-        else if (input == 's')
+            break;
+        case 's':
             playerY++;
-        else if (input == 'a')
+            break;
+        case 'a':
             playerX--;
-        else if (input == 'd')
+            break;
+        case 'd':
             playerX++;
-        else if (input == 'q')
+            break;
+        case 'q':
             gameOver = true;
+            break;
+        default:
+            message = "僅限輸入 w, s, a, d, q";
+            break;
+        }
 
         if (playerX < 0 || playerX >= mapSize || playerY < 0 || playerY >= mapSize)
         {
