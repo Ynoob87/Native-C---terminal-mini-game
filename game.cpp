@@ -12,6 +12,8 @@ private:
     int playerY;
     int starsX;
     int starsY;
+    int oldX;
+    int oldY;
     int score;
     int mapSize;
     bool gameOver;
@@ -30,6 +32,8 @@ public:
 
         playerX = 0;
         playerY = 0;
+        oldX = 0;
+        oldY = 0;
         starsX = 0;
         starsY = 0;
         score = 0;
@@ -93,8 +97,8 @@ public:
         std::cin >> input;
         input = tolower(input);
 
-        int oldX = playerX;
-        int oldY = playerY;
+        oldX = playerX;
+        oldY = playerY;
 
         switch (input)
         {
